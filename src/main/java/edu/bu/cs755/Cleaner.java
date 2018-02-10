@@ -5,6 +5,7 @@ import java.util.*;
 import java.util.function.Function;
 
 import com.amazonaws.services.s3.AmazonS3;
+import com.amazonaws.services.s3.AmazonS3Client;
 import com.amazonaws.services.s3.AmazonS3ClientBuilder;
 import com.amazonaws.services.s3.model.S3Object;
 import com.amazonaws.services.s3.model.S3ObjectInputStream;
@@ -16,7 +17,7 @@ public class Cleaner {
 
         String bucket_name = "metcs755";
         String key_name = "WikipediaPages_oneDocPerLine_1000Lines_small.txt";
-        AmazonS3 s3 = AmazonS3ClientBuilder.defaultClient();
+        AmazonS3 s3 = AmazonS3Client.builder().withRegion("us-east-1").build();
         S3Object o = s3.getObject(bucket_name, key_name);
         S3ObjectInputStream s3is = o.getObjectContent();
         List <String> pageStrings = IOUtils.readLines(s3is, "UTF-8");
