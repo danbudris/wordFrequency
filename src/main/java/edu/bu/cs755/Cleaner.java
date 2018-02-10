@@ -16,9 +16,9 @@ public class Cleaner {
     public static void main (String[] args) throws IOException {
 
         String key_name = "";
-        
+
         try{
-            if (args[0] == "big") {
+            if (args[0].equals("big")) {
                 key_name = "WikipediaPages_oneDocPerLine_1m.txt";
             }
             else {
