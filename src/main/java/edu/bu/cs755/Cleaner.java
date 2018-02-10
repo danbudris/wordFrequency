@@ -10,13 +10,27 @@ import com.amazonaws.services.s3.AmazonS3Client;
 import com.amazonaws.services.s3.model.S3Object;
 import com.amazonaws.services.s3.model.S3ObjectInputStream;
 import java.io.IOException;
+import java.lang.ArrayIndexOutOfBoundsException;
 
 public class Cleaner {
     public static void main (String[] args) throws IOException {
 
+        String key_name = "";
+        
+        try{
+            if (args[0] == "big") {
+                key_name = "WikipediaPages_oneDocPerLine_1m.txt";
+            }
+            else {
+                key_name = "WikipediaPages_oneDocPerLine_1000Lines_small.txt";
+            }
+        }
+        catch(ArrayIndexOutOfBoundsException e){
+            System.out.println("Provide Parameters");
+        };
+
         //Set up the connection to the bucket, and read in the file
         String bucket_name = "metcs755";
-        String key_name = "WikipediaPages_oneDocPerLine_1000Lines_small.txt";
         AmazonS3 s3 = AmazonS3Client.builder().withRegion("us-east-1").build();
         S3Object o = s3.getObject(bucket_name, key_name);
         S3ObjectInputStream s3is = o.getObjectContent();
