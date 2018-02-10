@@ -42,6 +42,5 @@ public class Cleaner {
                 .collect(Collectors.toList());
 
         sortedList.forEach(System.out::println);
-        cleanedList.forEach(System.out::println);
     }
 }
