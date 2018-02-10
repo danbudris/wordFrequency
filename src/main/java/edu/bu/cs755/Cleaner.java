@@ -3,7 +3,7 @@ package edu.bu.cs755;
 import java.util.stream.*;
 import java.util.*;
 import java.util.function.Function;
-import com.amazonaws.services.s3.model.*;
+import com.amazonaws.services.s3.model.S3ObjectInputStream;
 import org.apache.commons.io.IOUtils;
 import java.io.IOException;
 
