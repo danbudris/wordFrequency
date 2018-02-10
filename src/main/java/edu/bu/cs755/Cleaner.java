@@ -17,7 +17,7 @@ public class Cleaner {
 
         //Set up the connection to the bucket
         String bucket_name = "metcs755";
-        String key_name = "WikipediaPages_oneDocPerLine_1000Lines_small.txt";
+        String key_name = "WikipediaPages_oneDocPerLine_1m.txt";
         AmazonS3 s3 = AmazonS3Client.builder().withRegion("us-east-1").build();
         S3Object o = s3.getObject(bucket_name, key_name);
         S3ObjectInputStream s3is = o.getObjectContent();
