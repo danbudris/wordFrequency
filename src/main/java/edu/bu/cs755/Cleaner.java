@@ -40,6 +40,7 @@ public class Cleaner {
                 .limit(5000)
                 .map(x -> x.getKey())
                 .collect(Collectors.toList());
-        //sortedList.forEach(System.out::println);
+        
+        sortedList.forEach(System.out::println);
     }
 }
