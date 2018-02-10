@@ -3,15 +3,24 @@ package edu.bu.cs755;
 import java.util.stream.*;
 import java.util.*;
 import java.util.function.Function;
+
+import com.amazonaws.services.s3.AmazonS3;
+import com.amazonaws.services.s3.AmazonS3ClientBuilder;
+import com.amazonaws.services.s3.model.S3Object;
 import com.amazonaws.services.s3.model.S3ObjectInputStream;
 import org.apache.commons.io.IOUtils;
 import java.io.IOException;
 
 public class Cleaner {
     public static void main (String[] args) throws IOException {
-        Bucket pages = new Bucket("metcs755", "WikipediaPages_oneDocPerLine_1000Lines_small.txt", "test3", "test4");
-        S3ObjectInputStream s3is = pages.getObjectStream();
+
+        String bucket_name = "metcs755";
+        String key_name = "WikipediaPages_oneDocPerLine_1000Lines_small.txt";
+        AmazonS3 s3 = AmazonS3ClientBuilder.defaultClient();
+        S3Object o = s3.getObject(bucket_name, key_name);
+        S3ObjectInputStream s3is = o.getObjectContent();
         List <String> pageStrings = IOUtils.readLines(s3is, "UTF-8");
+
 
         //For each line in the list of pages, clean it of metadata tags, special characters and whitespace, can convert to uppercase
         List <String> cleanedList = pageStrings.stream()
