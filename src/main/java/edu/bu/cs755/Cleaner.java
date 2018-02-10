@@ -15,13 +15,13 @@ import java.io.IOException;
 public class Cleaner {
     public static void main (String[] args) throws IOException {
 
+        //Set up the connection to the bucket
         String bucket_name = "metcs755";
         String key_name = "WikipediaPages_oneDocPerLine_1000Lines_small.txt";
         AmazonS3 s3 = AmazonS3Client.builder().withRegion("us-east-1").build();
         S3Object o = s3.getObject(bucket_name, key_name);
         S3ObjectInputStream s3is = o.getObjectContent();
         List <String> pageStrings = IOUtils.readLines(s3is, "UTF-8");
-
 
         //For each line in the list of pages, clean it of metadata tags, special characters and whitespace, can convert to uppercase
         List <String> cleanedList = pageStrings.stream()
@@ -40,7 +40,8 @@ public class Cleaner {
                 .limit(5000)
                 .map(x -> x.getKey())
                 .collect(Collectors.toList());
-        
+
         sortedList.forEach(System.out::println);
+        cleanedList.forEach(System.out::println);
     }
 }
