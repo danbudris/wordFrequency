@@ -33,8 +33,9 @@
       <scope>test</scope>
     </dependency>
     <dependency>
-      <groupId>com.amazon.aws</groupId>
+      <groupId>com.amazonaws</groupId>
       <artifactId>aws-java-sdk-s3</artifactId>
+      <version>1.11.271</version>
     </dependency>
     <dependency>
       <groupId>commons-io</groupId>
